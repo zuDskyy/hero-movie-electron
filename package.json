@@ -1,7 +1,6 @@
 {
   "name": "heromovie",
   "version": "0.1.0",
-  "private": true,
   "author": "ZuDskyy",
   "description": "My First electron App",
   "homepage": "./",
@@ -16,7 +15,7 @@
     "bootstrap": "^5.2.3",
     "css-loader": "^6.7.3",
     "daisyui": "^2.46.1",
-    "electron-updater": "^5.3.0",
+    "electron-updater": "^4.6.5",
     "mdb-react-ui-kit": "^5.1.0",
     "react-bootstrap": "^2.7.0",
     "react-dropdown": "^1.11.0",
@@ -47,40 +46,48 @@
     "electron:package:win": "yarn build && electron-builder -w -c.extraMetadata.main=build/electron.js --publish never",
     "electron:package:linux": "yarn build && electron-builder -l -c.extraMetadata.main=build/electron.js ",
     "watch": "webpack --config webpack.common.js --watch",
-    "publish":"electron-builder build  --win --publish always"
+    "publish": "electron-builder build  --win --publish always"
   },
   "build": {
+    "generateUpdatesFilesForAllChannels": true,
     "appId": "com.electron.myapp",
     "productName": "HeroMovie",
+    "copyright": "zuDskyy",
     "files": [
       "build/**/*",
       "node_modules/**/*"
     ],
-    "publish": {
-      "provider": "github",
-      "owner": "zuDskyy"
-    },
     "directories": {
       "buildResources": "public"
     },
     "mac": {
       "target": "dmg",
-      "provider": "github",
-      "owner": "zuDskyy",
-      "repo":"hero-movie-electron"
+      "publish": {
+        "provider": "github",
+        "owner": "zuDskyy",
+        "repo": "hero-movie-electron"
+      }
     },
     "win": {
       "target": "nsis",
-      "provider": "github",
+      "publish": {
+        "provider": "github",
         "owner": "zuDskyy",
-        "repo":"hero-movie-electron",
+        "repo": "hero-movie-electron"
+      },
       "icon": "./build/movies.ico"
     },
     "linux": {
       "target": "deb",
+      "publish": {
+        "provider": "github",
+        "owner": "zuDskyy",
+        "repo": "hero-movie-electron"
+      }
+    },
+    "publish": {
       "provider": "github",
-      "owner": "zuDskyy",
-      "repo":"hero-movie-electron"
+      "owner": "zuDskyy"
     }
   },
   "eslintConfig": {
