@@ -5,6 +5,11 @@ const path = require("path");
 const url = require("url");
 
 let updateInterval=null;
+let updateCheck = false;
+let updateFound = false;
+let updateNotAvailable = false;
+let willQuitApp = false;
+let win;
 const iconUrl = url.format({
   pathname: path.join(__dirname, "/movies.ico"),
   protocol: 'file:',
