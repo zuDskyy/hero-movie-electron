@@ -13,18 +13,16 @@ const iconUrl = url.format({
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    maximizable:true,
     autoHideMenuBar: true,
     icon: __dirname + "/movies.ico",
-  
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
   });
 
 
-  
+  mainWindow.maximize()
   const appURL = app.isPackaged
     ? url.format({
         pathname: path.join(__dirname, "index.html"),
