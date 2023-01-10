@@ -56,7 +56,8 @@ function setupLocalFilesNormalizerProxy() {
 app.whenReady().then(() => {
   createWindow();
   setupLocalFilesNormalizerProxy();
-  updateInterval = setInterval(() => autoUpdater.checkForUpdates(), 10000);
+  autoUpdater.channel = "latest";
+  updateInterval = setInterval(() => autoUpdater.checkForUpdates(), 60000);
   app.on("activate", function () {
    
     if (BrowserWindow.getAllWindows().length === 0) {
@@ -66,30 +67,45 @@ app.whenReady().then(() => {
 });
 autoUpdater.on("update-available", (_event, releaseNotes, releaseName) => {
   const dialogOpts = {
-     type: 'info',
-     buttons: ['Ok'],
-     title: 'Update Available',
-     message: process.platform === 'win32' ? releaseNotes : releaseName,
-     detail: 'A new version download started. The app will be restarted to install the update.'
+      type: 'info',
+      buttons: ['Ok'],
+      title: `${autoUpdater.channel} Update Available`,
+      message: process.platform === 'win32' ? releaseNotes : releaseName,
+      detail: `A new ${autoUpdater.channel} version download started.`
   };
-  dialog.showMessageBox(dialogOpts);
 
-  updateInterval = null;
+  if (!updateCheck) {
+      updateInterval = null;
+      dialog.showMessageBox(dialogOpts);
+      updateCheck = true;
+  }
 });
 
-autoUpdater.on("update-downloaded", (_event, releaseNotes, releaseName) => {
+autoUpdater.on("update-downloaded", (_event) => {
+  if (!updateFound) {
+      updateInterval = null;
+      updateFound = true;
+
+      setTimeout(() => {
+          autoUpdater.quitAndInstall();
+      }, 3500);
+  }
+});
+
+autoUpdater.on("update-not-available", (_event) => {
   const dialogOpts = {
-     type: 'info',
-     buttons: ['Restart', 'Later'],
-     title: 'Application Update',
-     message: process.platform === 'win32' ? releaseNotes : releaseName,
-     detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+      type: 'info',
+      buttons: ['Ok'],
+      title: `Update Not available for ${autoUpdater.channel}`,
+      message: "A message!",
+      detail: `Update Not available for ${autoUpdater.channel}`
   };
-  dialog.showMessageBox(dialogOpts).then((returnValue) => {
-     if (returnValue.response === 0) autoUpdater.quitAndInstall()
-  });
-});
 
+  if (!updateNotAvailable) {
+      updateNotAvailable = true;
+      dialog.showMessageBox(dialogOpts);
+  }
+});
 
 app.on("window-all-closed", function () {
   if (process.platform !== "darwin") {
