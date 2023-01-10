@@ -1,0 +1,10 @@
+.ft-menu p{
+    
+    border-radius: 8px;
+   padding:.5em;
+   width:10em;
+}
+.ft-menu p:hover{
+    background-color: rgb(31, 44, 49);
+}
+

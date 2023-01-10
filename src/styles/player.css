@@ -1,0 +1,146 @@
+.player_container{
+    width:100%;
+    height: 40em;
+    background: #141E30; 
+    background: -webkit-linear-gradient(to bottom, #243B55, #141E30);  
+    background: linear-gradient(to bottom, #243B55, #141E30); 
+  
+}
+
+
+.player_div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin:0 auto;
+    
+}
+
+.left_player{
+    width: 100%;
+    height: 100%;
+    position:relative;
+}
+.right_description{
+    position: absolute;
+    padding-top:20px;
+    float:right;
+    right:0;
+    width: 40%;
+    background: linear-gradient(-45deg, #141414ee, #383738f3, #252424ec, #242525a9);
+	background-size: 400% 400%;
+	animation: gradient 5s ease infinite;
+    text-align: center;
+    color:white;
+    border-radius: 12px; 
+    animation-name: bump;
+    animation-duration: 2s ;
+    animation-iteration-count: 1;
+}
+
+
+@keyframes bump {
+    0%   {right:-100%;}
+       
+    100% {right:0;}
+    }
+
+ 
+
+
+
+
+
+
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+.player_trailer{
+   height: 350px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: -11111;
+    text-align: center;
+    padding-left:2px;
+  
+   
+   
+}
+.player_trailer::-webkit-scrollbar{
+    opacity: 0;
+    
+}
+.left_trailer_img{
+    display: flex;
+    width:35%;
+    align-items: center;
+}
+.left_trailer_img img{
+    width:100%;
+    border-radius: 8px;
+}
+
+
+.right_trailer_description{
+   margin:0 auto;
+    text-align: center;
+}
+.player_source h5{
+    padding:10px;
+    width:100%;
+    cursor:pointer;
+}
+.player_source .active{
+
+     background-color: rgba(15, 15, 15, 0.425);
+     backdrop-filter: blur(10px) ;
+     border-radius: 10px;
+}
+
+.player_min_group{
+   display: flex;
+   justify-content: center;
+   gap:25px;
+   
+   text-align: center;
+
+}
+.player_min_group button{
+ background-color: rgb(51, 49, 49);
+ 
+ width: 35px;
+ padding:2.5px;
+ border-radius: 8px;
+}
+.right_trailer_description h5{
+    font-size: 13px;
+}
+.right_trailer_description h6{
+    font-size: 10px;
+}
+.player_trailer_container{
+   
+    background-color: rgba(0, 0, 0, 0.521);
+    backdrop-filter: blur(10px) ;
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 3px solid rgba(243, 239, 239, 0.918);
+    
+    
+}
+.more_property{
+    background-color: rgba(10, 46, 10, 0.945);
+    border-radius:8px;
+    border: 1px solid white;
+}

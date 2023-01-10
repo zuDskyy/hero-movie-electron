@@ -1,0 +1,51 @@
+
+.single-movie-div{
+    
+    width: 100%;
+    background-color: rgb(29, 29, 29);
+    
+}
+.bg_poster{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; 
+}
+.bg_poster_backdrop{
+  background-color: rgba(219, 213, 213, 0.356);
+  backdrop-filter: blur(4px); 
+
+}
+.single-movie-img-div { 
+ margin: 5px;
+padding: 20px 5px 10px;
+color:white;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+background-blend-mode: color;
+max-width: 300px;
+height: 450px;
+box-shadow: 10px 10px 10px #111;
+transition: background-color 0.25s linear;
+text-align: center;
+font-family: "Roboto", sans-serif;
+background-size: cover;
+border-radius: 8px;
+}
+
+.single-movie-div h3{
+    font-size:12px;
+    max-height: 300px;
+    transform: scale(1);
+    background:#111;
+    padding:0.9em;
+    border-radius: 12px;
+    transition: transform 0.24s ease-in 0.05s, opacity 0.3s linear;
+}
+
+.single-movie-div h1{
+    text-align: center;
+    transition: transform 0.24s ease-in 0, opacity 0.3s linear;
+  text-transform: uppercase;
+}
+
