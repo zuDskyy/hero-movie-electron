@@ -56,7 +56,7 @@ function setupLocalFilesNormalizerProxy() {
 app.whenReady().then(() => {
   createWindow();
   setupLocalFilesNormalizerProxy();
-  updateInterval = setInterval(() => autoUpdater.checkForUpdates(), 60000);
+  updateInterval = setInterval(() => autoUpdater.checkForUpdates(), 10000);
   app.on("activate", function () {
    
     if (BrowserWindow.getAllWindows().length === 0) {

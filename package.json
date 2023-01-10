@@ -45,7 +45,8 @@
     "electron:package:mac": "yarn build && electron-builder -m -c.extraMetadata.main=build/electron.js",
     "electron:package:win": "yarn build && electron-builder -w -c.extraMetadata.main=build/electron.js --publish never",
     "electron:package:linux": "yarn build && electron-builder -l -c.extraMetadata.main=build/electron.js ",
-    "watch": "webpack --config webpack.common.js --watch"
+    "watch": "webpack --config webpack.common.js --watch",
+    "deploy": "electron-builder build  --win --publish always"
   },
   "build": {
     "generateUpdatesFilesForAllChannels": true,
@@ -72,7 +73,8 @@
       "publish": {
         "provider": "github",
         "owner": "zuDskyy",
-        "repo": "hero-movie-electron"
+        "repo": "hero-movie-electron",
+        "token":"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"
       },
       "icon": "./build/movies.ico"
     },
