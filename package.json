@@ -46,7 +46,7 @@
     "electron:package:win": "yarn build && electron-builder --win -c.extraMetadata.main=build/electron.js --publish never",
     "electron:package:linux": "yarn build && electron-builder -l -c.extraMetadata.main=build/electron.js ",
     "watch": "webpack --config webpack.common.js --watch",
-    "deploy": "electron-builder build  --win --publish always"
+    "deploy": "electron-forge  publish "
   },
   "build": {
     "generateUpdatesFilesForAllChannels": true,
