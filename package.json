@@ -79,7 +79,7 @@
         "provider": "github",
         "owner": "zuDskyy",
         "repo": "hero-movie-electron",
-        "token" :"0000-0000-902cfa98-9886-4706-ab6d-1d3a22a08480" 
+        "token" : "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"
       },
       "icon": "./build/movies.ico"
     },
