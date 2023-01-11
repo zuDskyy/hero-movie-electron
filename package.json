@@ -5,10 +5,6 @@
   "description": "My First electron App",
   "homepage": "./",
   "main": "./public/electron.js",
-  "repository": {
-    "type" : "git",
-    "url" : "https://github.com/zuDskyy/hero-movie-electron"
-  },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^2.0.13",
@@ -29,7 +25,7 @@
     "react-player": "^2.11.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-select": "^5.7.0",
     "react-widgets": "^5.8.4",
     "redux": "^4.2.0",
@@ -70,7 +66,6 @@
         "provider": "github",
         "owner": "zuDskyy",
         "repo": "hero-movie-electron"
-
       }
     },
     "win": {
@@ -79,7 +74,7 @@
         "provider": "github",
         "owner": "zuDskyy",
         "repo": "hero-movie-electron",
-        "token" : "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"
+        "token": "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"
       },
       "icon": "./build/movies.ico"
     },
