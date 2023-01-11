@@ -1,6 +1,6 @@
 {
   "name": "heromovie",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "ZuDskyy",
   "description": "My First electron App",
   "homepage": "./",
@@ -74,7 +74,7 @@
         "provider": "github",
         "owner": "zuDskyy",
         "repo": "hero-movie-electron",
-        "token": "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"
+        "token": "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"
       },
       "icon": "./build/movies.ico"
     },

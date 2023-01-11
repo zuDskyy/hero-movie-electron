@@ -60,7 +60,7 @@ const  Footer = ({languages})  => {
       <div className='text-center p-4  ' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
         © 2022 Copyright:
         <Link className='text-reset fw-bold p-1'>
-           zuDskyy V0.1.0
+           zuDskyy V0.1.1
         </Link>
       </div>
      
