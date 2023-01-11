@@ -1,6 +1,6 @@
 {
   "name": "heromovie",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "author": "ZuDskyy",
   "description": "My First electron App",
   "homepage": "./",
@@ -73,7 +73,7 @@
       "publish": {
         "provider": "github",
         "owner": "zuDskyy",
-        "repo": "hero-movie-electron"  
+        "repo": "hero-movie-electron"
       },
       "icon": "./build/movies.ico"
     },
@@ -111,6 +111,7 @@
     ]
   },
   "devDependencies": {
+    "@electron-forge/publisher-github": "^6.0.4",
     "autoprefixer": "^10.4.13",
     "babel-core": "^6.26.3",
     "concurrently": "^7.6.0",
