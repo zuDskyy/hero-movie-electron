@@ -5,6 +5,10 @@
   "description": "My First electron App",
   "homepage": "./",
   "main": "./public/electron.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/zuDskyy/hero-movie-electron"
+  },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^2.0.13",
@@ -46,7 +50,7 @@
     "electron:package:win": "yarn build && electron-builder --win -c.extraMetadata.main=build/electron.js --publish never",
     "electron:package:linux": "yarn build && electron-builder -l -c.extraMetadata.main=build/electron.js ",
     "watch": "webpack --config webpack.common.js --watch",
-    "deploy": "electron-forge  publish "
+    "deploy": "electron-builder build  --win --publish always"
   },
   "build": {
     "generateUpdatesFilesForAllChannels": true,
@@ -66,6 +70,7 @@
         "provider": "github",
         "owner": "zuDskyy",
         "repo": "hero-movie-electron"
+
       }
     },
     "win": {
@@ -73,7 +78,8 @@
       "publish": {
         "provider": "github",
         "owner": "zuDskyy",
-        "repo": "hero-movie-electron"
+        "repo": "hero-movie-electron",
+        "token" :"0000-0000-902cfa98-9886-4706-ab6d-1d3a22a08480" 
       },
       "icon": "./build/movies.ico"
     },
@@ -111,7 +117,6 @@
     ]
   },
   "devDependencies": {
-    "@electron-forge/publisher-github": "^6.0.4",
     "autoprefixer": "^10.4.13",
     "babel-core": "^6.26.3",
     "concurrently": "^7.6.0",
