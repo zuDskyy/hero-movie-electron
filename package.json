@@ -66,8 +66,7 @@
       "publish": {
         "provider": "github",
         "owner": "zuDskyy",
-        "repo": "hero-movie-electron",
-        "token":"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"
+        "repo": "hero-movie-electron"
       }
     },
     "win": {
@@ -75,7 +74,8 @@
       "publish": {
         "provider": "github",
         "owner": "zuDskyy",
-        "repo": "hero-movie-electron"
+        "repo": "hero-movie-electron",
+        "token":"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"
       },
       "icon": "./build/movies.ico"
     },
