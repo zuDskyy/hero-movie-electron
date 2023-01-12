@@ -47,7 +47,7 @@
     "electron:package:win": "yarn build && electron-builder --win -c.extraMetadata.main=build/electron.js --publish never",
     "electron:package:linux": "yarn build && electron-builder -l -c.extraMetadata.main=build/electron.js ",
     "watch": "webpack --config webpack.common.js --watch",
-    "deploy": "GH_TOKEN=<personal_access_token> && yarn build && electron-builder build  --win --publish always"
+    "deploy": "set GH_TOKEN=<personal_access_token> && yarn build && electron-builder build  --win --publish always"
   },
   "build": {
     "generateUpdatesFilesForAllChannels": true,
