@@ -1,6 +1,6 @@
 {
   "name": "heromovie",
-  "version": "0.1.2",
+  "version": "0.1.0",
   "author": "ZuDskyy",
   "description": "My First electron App",
   "homepage": "./",
@@ -15,6 +15,7 @@
     "bootstrap": "^5.2.3",
     "css-loader": "^6.7.3",
     "daisyui": "^2.46.1",
+    "electron-is-dev": "^2.0.0",
     "electron-updater": "^4.6.5",
     "mdb-react-ui-kit": "^5.1.0",
     "react-bootstrap": "^2.7.0",

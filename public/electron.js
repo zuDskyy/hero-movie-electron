@@ -3,11 +3,8 @@ const { app, BrowserWindow, protocol ,dialog} = require("electron");
 const { autoUpdater } = require("electron-updater");
 const path = require("path");
 const url = require("url");
-const fs = require('fs');
-const data = fs.readFileSync(__dirname + '/../package.json', 'utf8');
-const dataObj = JSON.parse(data);
+const isDev = require("electron-is-dev");
 
-let updateInterval=null;
 const iconUrl = url.format({
   pathname: path.join(__dirname, "/movies.ico"),
   protocol: 'file:',
@@ -22,8 +19,9 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
+  
   });
-
+  
 
   mainWindow.maximize()
   const appURL = app.isPackaged
@@ -35,6 +33,9 @@ function createWindow() {
     : "http://localhost:3000";
   mainWindow.loadURL(appURL);
   
+  if (!isDev) {
+      autoUpdater.checkForUpdates();
+    }
 
   if (!app.isPackaged) {
     mainWindow.webContents.openDevTools();
@@ -59,15 +60,6 @@ function setupLocalFilesNormalizerProxy() {
 app.whenReady().then(() => {
   createWindow();
   setupLocalFilesNormalizerProxy();
-  if (dataObj.version.includes("-alpha")) {
-    autoUpdater.channel = "alpha";
-} else if (dataObj.version.includes("-beta")) {
-    autoUpdater.channel = "beta";
-} else {
-    autoUpdater.channel = "latest";
-}
-
-updateInterval = setInterval(() => autoUpdater.checkForUpdates(), 10000);
 });
 
 app.on('window-all-closed', () => {
@@ -82,47 +74,32 @@ if (process.platform !== 'darwin') {
     }
   });
 });
+
 autoUpdater.on("update-available", (_event, releaseNotes, releaseName) => {
-  const dialogOpts = {
-      type: 'info',
-      buttons: ['Ok'],
-      title: `${autoUpdater.channel} Update Available`,
-      message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail: `A new ${autoUpdater.channel} version download started.`
-  };
+	const dialogOpts = {
+		type: 'info',
+		buttons: ['Ok'],
+		title: 'Application Update',
+		message: process.platform === 'win32' ? releaseNotes : releaseName,
+		detail: 'A new version is being downloaded.'
+	}
+	dialog.showMessageBox(dialogOpts, (response) => {
 
-  if (!updateCheck) {
-      updateInterval = null;
-      dialog.showMessageBox(dialogOpts);
-      updateCheck = true;
-  }
-});
+	});
+})
 
-autoUpdater.on("update-downloaded", (_event) => {
-  if (!updateFound) {
-      updateInterval = null;
-      updateFound = true;
-
-      setTimeout(() => {
-          autoUpdater.quitAndInstall();
-      }, 3500);
-  }
-});
-
-autoUpdater.on("update-not-available", (_event) => {
-  const dialogOpts = {
-      type: 'info',
-      buttons: ['Ok'],
-      title: `Update Not available for ${autoUpdater.channel}`,
-      message: "A message!",
-      detail: `Update Not available for ${autoUpdater.channel}`
-  };
-
-  if (!updateNotAvailable) {
-      updateNotAvailable = true;
-      dialog.showMessageBox(dialogOpts);
-  }
-});
+autoUpdater.on("update-downloaded", (_event, releaseNotes, releaseName) => {
+	const dialogOpts = {
+		type: 'info',
+		buttons: ['Restart', 'Later'],
+		title: 'Application Update',
+		message: process.platform === 'win32' ? releaseNotes : releaseName,
+		detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+	};
+	dialog.showMessageBox(dialogOpts).then((returnValue) => {
+		if (returnValue.response === 0) autoUpdater.quitAndInstall()
+	})
+})
 
 app.on("window-all-closed", function () {
   if (process.platform !== "darwin") {
