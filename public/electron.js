@@ -3,13 +3,11 @@ const { app, BrowserWindow, protocol ,dialog} = require("electron");
 const { autoUpdater } = require("electron-updater");
 const path = require("path");
 const url = require("url");
+const fs = require('fs');
+const data = fs.readFileSync(__dirname + '/../package.json', 'utf8');
+const dataObj = JSON.parse(data);
 
 let updateInterval=null;
-let updateCheck = false;
-let updateFound = false;
-let updateNotAvailable = false;
-let willQuitApp = false;
-let win;
 const iconUrl = url.format({
   pathname: path.join(__dirname, "/movies.ico"),
   protocol: 'file:',
@@ -61,8 +59,22 @@ function setupLocalFilesNormalizerProxy() {
 app.whenReady().then(() => {
   createWindow();
   setupLocalFilesNormalizerProxy();
-  autoUpdater.channel = "latest";
-  updateInterval = setInterval(() => autoUpdater.checkForUpdates(), 60000);
+  if (dataObj.version.includes("-alpha")) {
+    autoUpdater.channel = "alpha";
+} else if (dataObj.version.includes("-beta")) {
+    autoUpdater.channel = "beta";
+} else {
+    autoUpdater.channel = "latest";
+}
+
+updateInterval = setInterval(() => autoUpdater.checkForUpdates(), 10000);
+});
+
+app.on('window-all-closed', () => {
+if (process.platform !== 'darwin') {
+    app.quit()
+}
+
   app.on("activate", function () {
    
     if (BrowserWindow.getAllWindows().length === 0) {
